@@ -10,5 +10,6 @@ void kernel4 (int array[ARRAY_SIZE], int index[ARRAY_SIZE], int offset) {
         currentarray = nextarray;
         nextarray = array[i + 2];
     }
-    array[offset] = result + index[ARRAY_SIZE - 2] * (nextarray - currentarray); // we can just store it at the end of the loop since we keep it updated
+    array[offset] = result + index[ARRAY_SIZE - 2] * (nextarray - currentarray);    // we can just store it at the end of the loop since we keep it updated
 }
+

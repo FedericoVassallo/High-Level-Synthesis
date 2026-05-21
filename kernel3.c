@@ -7,15 +7,12 @@ void kernel3(float hist[ARRAY_SIZE], float weight[ARRAY_SIZE],
         #pragma HLS dependence variable=hist type=inter direction=RAW dependent=false
         #pragma HLS pipeline II=3 style=stp
 
-        int idx = index[i];
-        float w = weight[i];
+        float old_value = (index[i] == prev_idx) ? prev_value : hist[index[i]];
+        float result = old_value + weight[i];;
 
-        float old_value = (idx == prev_idx) ? prev_value : hist[idx];
-        float result = old_value + w;
+        hist[index[i]] = result;
 
-        hist[idx] = result;
-
-        prev_idx = idx;
+        prev_idx = index[i];
         prev_value = result;
     }
 }
